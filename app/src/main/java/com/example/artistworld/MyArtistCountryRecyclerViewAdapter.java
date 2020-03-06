@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.example.artistworld.data.local.ArtistEntity;
+import com.example.artistworld.data.local.entity.ArtistEntity;
 import com.example.artistworld.data.remote.ApiConstans;
 
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.List;
 
 public class MyArtistCountryRecyclerViewAdapter extends RecyclerView.Adapter<MyArtistCountryRecyclerViewAdapter.ViewHolder> {
 
-    private final List<ArtistEntity> mValues;
+    private  List<ArtistEntity> mValues;
     Context ctx;
 
 
@@ -44,9 +44,17 @@ public class MyArtistCountryRecyclerViewAdapter extends RecyclerView.Adapter<MyA
 
     }
 
+    public void setData(List<ArtistEntity> artist){
+        this.mValues=artist;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
+
+        if(mValues !=null)
         return mValues.size();
+        else return 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

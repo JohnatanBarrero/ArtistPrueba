@@ -1,8 +1,9 @@
 
-package com.example.artistworld.data.local;
+package com.example.artistworld.data.local.entity;
 
 import android.media.Image;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -16,6 +17,7 @@ public class ArtistEntity {
     @PrimaryKey
     @SerializedName("mbid")
     @Expose
+    @NonNull
     private String mbid;
 
     @SerializedName("name")

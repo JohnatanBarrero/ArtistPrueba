@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,7 +14,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.artistworld.data.local.ArtistEntity;
+import com.example.artistworld.data.local.entity.ArtistEntity;
+import com.example.artistworld.data.network.Resource;
+import com.example.artistworld.viewmodel.ArtistViewModel;
 
 import java.util.List;
 
@@ -25,6 +29,7 @@ public class ArtistCountryFragment extends Fragment {
 
     List<ArtistEntity> artistList;
     MyArtistCountryRecyclerViewAdapter adapter;
+    ArtistViewModel artistViewModel;
 
     public ArtistCountryFragment() {
     }
@@ -44,6 +49,9 @@ public class ArtistCountryFragment extends Fragment {
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
+
+        artistViewModel= ViewModelProviders.of(getActivity())
+                .get(ArtistViewModel.class);
     }
 
     @Override
@@ -67,8 +75,20 @@ public class ArtistCountryFragment extends Fragment {
 
             );
             recyclerView.setAdapter(adapter);
+
+            loadartists();
         }
         return view;
+    }
+
+    private void loadartists() {
+        artistViewModel.getartist().observe(getActivity(), new Observer<Resource<List<ArtistEntity>>>() {
+            @Override
+            public void onChanged(Resource<List<ArtistEntity>> listResource) {
+                artistList= listResource.data;
+                adapter.setData(artistList);
+            }
+        });
     }
 
 }
