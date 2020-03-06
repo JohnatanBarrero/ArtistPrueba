@@ -4,4 +4,8 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="MensajeIngreso">Click aqui si no tienes clave</string>
+    <string name="NameUser">Nombre de Usuario</string>
+    <string name="Password">Password</string>
+    <string name="btnIngreso">Ingresar</string>
 </resources>
