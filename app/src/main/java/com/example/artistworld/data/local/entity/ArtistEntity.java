@@ -39,7 +39,7 @@ public class ArtistEntity {
 
     /**
      * No args constructor for use in serialization
-     * 
+     *
      */
     public ArtistEntity() {
     }
